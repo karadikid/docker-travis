@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t frontend_web -f Dockerfile.dev .
+
+scripts:
+    - docker run -e CI=true frontend_web npm run test -- -- coverage
+    
